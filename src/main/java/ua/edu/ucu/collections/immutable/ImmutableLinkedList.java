@@ -3,11 +3,10 @@ package ua.edu.ucu.collections.immutable;
 import java.util.Objects;
 
 public final class ImmutableLinkedList implements ImmutableList {
-    private int llSize;
 
     static class Node {
-        Object data;
-        Node next;
+        private Object data;
+        private Node next;
 
         public Node(Object data) {
             this.data = data;
@@ -15,12 +14,9 @@ public final class ImmutableLinkedList implements ImmutableList {
         }
     }
 
-    Node head;
+    private int llSize;
 
-    @Override
-    public boolean isEmpty() {
-        return head == null;
-    }
+    private Node head;
 
     public ImmutableLinkedList() {
         head = null;
@@ -48,6 +44,11 @@ public final class ImmutableLinkedList implements ImmutableList {
             }
         }
         llSize = objects.length;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return head == null;
     }
 
     private void checkIndexOutOfBounds() {

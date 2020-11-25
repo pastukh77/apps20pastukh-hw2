@@ -18,7 +18,8 @@ public final class ImmutableArrayList implements ImmutableList {
         size = source.length;
     }
 
-    private static void shiftRight(Object[] arr, int start, int size, int shiftSize) {
+    private static void shiftRight(Object[] arr, int start,
+                                   int size, int shiftSize) {
         for (int i = 1; i < size - start + 1; i++) {
             arr[size + shiftSize - i] = arr[size - i];
         }
@@ -53,7 +54,9 @@ public final class ImmutableArrayList implements ImmutableList {
 
     @Override
     public ImmutableList addAll(int index, Object[] c) {
-        ImmutableArrayList clone = new ImmutableArrayList(Arrays.copyOfRange(elements, 0, size), size + c.length);
+        ImmutableArrayList clone = new ImmutableArrayList(
+                Arrays.copyOfRange(elements, 0, size),
+                size + c.length);
         shiftRight(clone.elements, index, size, c.length);
         int cnt = 0;
         for (int i = index; i < index + c.length; i++) {
@@ -77,7 +80,9 @@ public final class ImmutableArrayList implements ImmutableList {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
-        ImmutableArrayList clone = new ImmutableArrayList(Arrays.copyOfRange(elements, 0, size), size - 1);
+        ImmutableArrayList clone = new
+                ImmutableArrayList(Arrays.copyOfRange(
+                        elements, 0, size), size - 1);
         shiftLeft(clone.elements, index + 1, 1);
         clone.crementSize(-1);
         return clone;
@@ -88,7 +93,9 @@ public final class ImmutableArrayList implements ImmutableList {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
-        ImmutableArrayList clone = new ImmutableArrayList(Arrays.copyOfRange(elements, 0, size), 2 * size);
+        ImmutableArrayList clone = new
+                ImmutableArrayList(Arrays.copyOfRange(
+                        elements, 0, size), 2 * size);
         clone.elements[index] = e;
         return clone;
 
